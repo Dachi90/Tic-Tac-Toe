@@ -2,17 +2,20 @@ import { Square } from './Square';
 
 const styleSquare = 'border border-slate-950 rounded-2xl flex items-center justify-center text-5xl bg-gray-300';
 
-export const Board = ({ board, updateBoard }) => {
+export const Board = ({ board, setBoard, turn, setTurn }) => {
 	const handleClick = (index) => {
-		console.log(index);
 		const newBoard = [...board];
-		newBoard[index] = '❌';
-		updateBoard(newBoard);
-		console.log(newBoard);
+		newBoard[index] = turn;
+
+		let newTurn = turn;
+		newTurn = turn === '❌' ? (newTurn = '⚪') : (newTurn = '❌');
+
+		setTurn(newTurn);
+		setBoard(newBoard);
 	};
 
 	return (
-		<section className='w-[360px] h-[360px] grid grid-cols-3 grid-rows-3 mx-auto gap-1'>
+		<section className='w-[360px] h-[360px] grid grid-cols-3 grid-rows-3 mx-auto gap-1 mb-4'>
 			{board.map((square, index) => {
 				return (
 					<Square
