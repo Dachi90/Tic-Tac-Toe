@@ -1,12 +1,16 @@
-import React from 'react';
+export const Square = ({ children, isSelected, updateBoard, index }) => {
+	const className = `square ${isSelected ? 'is-selected' : ''}`;
 
-export const Square = ({ index, handleClick, board }) => {
+	const handleClick = () => {
+		updateBoard(index);
+	};
+
 	return (
-		<article
-			onClick={() => handleClick(index)}
-			className='border border-slate-950 rounded-2xl flex items-center justify-center text-5xl bg-gray-300'
+		<div
+			onClick={handleClick}
+			className={className}
 		>
-			{board[index]}
-		</article>
+			{children}
+		</div>
 	);
 };
