@@ -2,7 +2,7 @@ import { Square } from './Square';
 
 const styleSquare = 'border border-slate-950 rounded-2xl flex items-center justify-center text-5xl bg-gray-300';
 
-export const Board = ({ board, setBoard, turn, setTurn }) => {
+export const Board = ({ board, setBoard, turn, setTurn, checkWinner, finishGame }) => {
 	const handleClick = (index) => {
 		const newBoard = [...board];
 		newBoard[index] = turn;
@@ -12,6 +12,8 @@ export const Board = ({ board, setBoard, turn, setTurn }) => {
 
 		setTurn(newTurn);
 		setBoard(newBoard);
+		checkWinner(newBoard);
+		finishGame();
 	};
 
 	return (
